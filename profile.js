@@ -1,3 +1,29 @@
+// ВРЕМЕННО: задержка перед редиректом для отладки
+console.log('Проверяем авторизацию...');
+console.log('currentUser:', localStorage.getItem('currentUser'));
+console.log('Все ключи localStorage:', Object.keys(localStorage));
+
+// Даём 5 секунд на изучение консоли перед редиректом
+setTimeout(() => {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+        console.log('Редирект на index.html');
+        window.location.href = 'index.html';
+    } else {
+        console.log('Пользователь найден:', currentUser);
+        document.getElementById('user-name').textContent = currentUser.name;
+        document.getElementById('user-email').textContent = currentUser.email;
+        if (document.getElementById('user-nickname')) {
+            document.getElementById('user-nickname').textContent = 
+                currentUser.nickname ? `Ник: ${currentUser.nickname}` : 'Ник не указан';
+        }
+        if (document.getElementById('user-rank')) {
+            document.getElementById('user-rank').textContent = 
+                currentUser.rank ? `Ранг: ${currentUser.rank}` : 'Ранг не указан';
+        }
+    }
+}, 5000); // 5 секунд на изучение консоли
+
 // ===== НАСТРОЙКИ (ССЫЛКУ МЕНЯЙ ЗДЕСЬ) =====
 const REPORT_URL = 'https://forum.blackrussia.online/threads/%D0%A4%D0%A1%D0%91-%D0%A0%D0%B0%D0%BF%D0%BE%D1%80%D1%82-%D0%BD%D0%B0-%D0%B2%D1%81%D1%82%D1%83%D0%BF%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2-%D0%A6%D0%A1%D0%9D.14742722/page-2';   // ← СЮДА ВСТАВЛЯЕШЬ СВОЮ ССЫЛКУ
 // ===========================================
@@ -41,4 +67,5 @@ if (!currentUser) {
         currentUser.nickname ? `Ник: ${currentUser.nickname}` : 'Ник не указан';
     document.getElementById('user-rank').textContent = 
         currentUser.rank ? `Ранг: ${currentUser.rank}` : 'Ранг не указан';
+
 }
