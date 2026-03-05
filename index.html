@@ -85,8 +85,36 @@
 
     <script src="profile.js"></script>
     <script src="news.js"></script>
+    <div id="news-container">Загрузка новостей...</div>
+
+<script>
+async function loadNews() {
+    try {
+        // Путь к файлу на GitHub (сырой)
+        const response = await fetch('https://raw.githubusercontent.com/Fuporitov/csn.github.io/main/news.json');
+        const news = await response.json();
+        
+        const container = document.getElementById('news-container');
+        if (news.length === 0) {
+            container.innerHTML = '<p>Пока нет новостей</p>';
+        } else {
+            container.innerHTML = news.map(item => `
+                <div style="border-bottom:1px solid #ccc; padding:10px;">
+                    <h3>${item.title}</h3>
+                    <p>${item.content}</p>
+                    <small>${item.date}</small>
+                </div>
+            `).join('');
+        }
+    } catch (e) {
+        document.getElementById('news-container').innerHTML = '<p>Ошибка загрузки новостей</p>';
+    }
+}
+loadNews();
+</script>
 </body>
 </html>
+
 
 
 
