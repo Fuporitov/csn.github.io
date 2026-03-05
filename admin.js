@@ -1,5 +1,5 @@
 // ===== НАСТРОЙКИ =====
-const BIN_ID = 'твой_bin_id';
+const BIN_ID = '69a89f5743b1c97be9b3dae1 ';
 const MASTER_KEY = 'твой_X-Master-Key'; // Мастер-ключ для записи
 
 // Проверка, что пользователь админ (замени 'leader@csn.ru' на email лидера)
@@ -94,4 +94,5 @@ document.getElementById('logout-btn').addEventListener('click', () => {
 });
 
 // Загружаем новости при открытии страницы
+
 loadNews();
