@@ -1,6 +1,6 @@
 // ===== НАСТРОЙКИ =====
 const BIN_ID = '69a89f5743b1c97be9b3dae1 ';
-const MASTER_KEY = '$2a$10$6Rm.O3tMiZjU.rwqOCzJxu/QbN485clA.WuUon1y8wogZKIHWp2mu'; // Мастер-ключ для записи
+const MASTER_KEY = '$2a$10$6Rm.O3tMiZjU.rwqOCzJxu/QbN485clA.WuUon1y8wogZKIHWp2mu';
 
 // Проверка, что пользователь админ (замени 'leader@csn.ru' на email лидера)
 const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -100,5 +100,6 @@ document.getElementById('logout-btn').addEventListener('click', () => {
 // Загружаем новости при открытии страницы
 
 loadNews();
+
 
 
