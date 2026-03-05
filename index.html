@@ -7,6 +7,17 @@
     <title>ЦСН ФСБ #62 - Профиль</title>
 </head>
 <body>
+    <div id="admin-link" style="display: none;">
+    <a href="admin.html">📝 Управление новостями</a>
+</div>
+
+<script>
+    // Показываем ссылку, если залогинен лидер (замени email на свой)
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (user && user.email === 'leader@csn.ru') {
+        document.getElementById('admin-link').style.display = 'block';
+    }
+</script>
     <div class="profile-container">
         <!-- Шапка профиля -->
         <div class="profile-header">
@@ -76,6 +87,7 @@
     <script src="news.js"></script>
 </body>
 </html>
+
 
 
 
