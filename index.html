@@ -112,8 +112,33 @@ async function loadNews() {
 }
 loadNews();
 </script>
+
+<div id="news-container">Загрузка новостей...</div>
+<script>
+  fetch('https://raw.githubusercontent.com/Fuporitov/csn.github.io/main/news.json')
+    .then(r => r.json())
+    .then(news => {
+      const container = document.getElementById('news-container');
+      if (news.length === 0) {
+        container.innerHTML = '<p>Новостей пока нет</p>';
+      } else {
+        container.innerHTML = news.map(item => `
+          <div style="border-bottom:1px solid #ccc; padding:10px;">
+            <h3>${item.title}</h3>
+            <p>${item.content}</p>
+            <small>${item.date}</small>
+          </div>
+        `).join('');
+      }
+    })
+    .catch(() => {
+      document.getElementById('news-container').innerHTML = '<p>Ошибка загрузки новостей</p>';
+    });
+</script>
+    
 </body>
 </html>
+
 
 
 
