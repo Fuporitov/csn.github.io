@@ -101,6 +101,9 @@ document.getElementById('logout-btn').addEventListener('click', () => {
 
 loadNews();
 
+console.log(JSON.stringify(BIN_ID));
+
+
 
 
 
