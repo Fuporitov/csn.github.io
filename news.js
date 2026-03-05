@@ -1,6 +1,6 @@
 // ===== НАСТРОЙКИ =====
 const BIN_ID = '69a89f5743b1c97be9b3dae1';                // Например: '65a1b2c3d4e5f6g7h8i9'
-const READ_KEY = 'твой_ключ_только_для_чтения'; // Или X-Master-Key, но лучше создать read-only
+const READ_KEY = '$2a$10$6Rm.O3tMiZjU.rwqOCzJxu/QbN485clA.WuUon1y8wogZKIHWp2mu'; // Или X-Master-Key, но лучше создать read-only
 
 async function loadNews() {
     try {
@@ -36,3 +36,4 @@ async function loadNews() {
 // Загружаем новости при загрузке страницы
 
 loadNews();
+
