@@ -51,6 +51,10 @@ document.getElementById('news-form').addEventListener('submit', async (e) => {
     
     // Добавляем новую
     news.push({ title, content, date });
+
+    console.log('MASTER_KEY (length):', MASTER_KEY.length);
+console.log('MASTER_KEY (raw):', JSON.stringify(MASTER_KEY));
+console.log('BIN_ID:', JSON.stringify(BIN_ID));
     
     // Обновляем бин
     await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
@@ -96,3 +100,4 @@ document.getElementById('logout-btn').addEventListener('click', () => {
 // Загружаем новости при открытии страницы
 
 loadNews();
+
