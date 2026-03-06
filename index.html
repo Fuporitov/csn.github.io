@@ -3,145 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЦСН ФСБ #62 IVANOVO</title>
+    <!-- Подключаем твой любимый шрифт и иконки (если нужны) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Основные стили – можешь использовать тот же style.css, что и на сайте регистрации, или свой -->
     <link rel="stylesheet" href="style.css">
-    <title>ЦСН ФСБ #62 - Профиль</title>
+    <style>
+        /* Дополнительные стили для новостей, если не описаны в style.css */
+        .news-section {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 800px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .news-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        .news-item h3 {
+            color: #512da8;
+            margin-bottom: 5px;
+        }
+        .news-item small {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        /* Кнопка для перехода на сайт регистрации (если хочешь) */
+        .login-btn {
+            display: inline-block;
+            background-color: #512da8;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .login-btn:hover {
+            background-color: #3f1f8a;
+        }
+    </style>
 </head>
 <body>
-    <div id="admin-link" style="display: none;">
-    <a href="admin.html">📝 Управление новостями</a>
-</div>
+    <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 20px;">
+        <!-- Шапка с логотипом или названием -->
+        <header style="text-align: center; margin-bottom: 40px;">
+            <h1 style="color: #512da8;">ЦСН ФСБ #62 IVANOVO</h1>
+            <p style="font-size: 1.2rem;">Официальный сайт подразделения</p>
+        </header>
 
-<script>
-    // Показываем ссылку, если залогинен лидер (замени email на свой)
-    const user = JSON.parse(localStorage.getItem('currentUser'));
-    if (user && user.email === 'leader@csn.ru') {
-        document.getElementById('admin-link').style.display = 'block';
-    }
-</script>
-    <div class="profile-container">
-        <!-- Шапка профиля -->
-        <div class="profile-header">
-            <div class="user-info">
-                <span class="user-name" id="user-name"></span>
-                <span class="user-email" id="user-email"></span>
-                <span class="user-nickname" id="user-nickname"></span>
-                <span class="user-rank" id="user-rank"></span>
-            </div>
-            <button class="logout-btn" id="logout-btn">Выйти</button>
-        </div>
+        <!-- БЛОК НОВОСТЕЙ (загружается из news.json) -->
+        <section class="news-section">
+            <h2 style="color: #512da8;">📢 Последние новости</h2>
+            <div id="news-container">Загрузка новостей...</div>
+        </section>
 
-        <!-- Центральная надпись -->
-        <div class="main-title">
-            <h1>ЦСН ФСБ #62 IVANOVO</h1>
-        </div>
+        <!-- Основной информационный блок (твой текст) -->
+        <section style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <h2 style="color: #512da8;">😊 В данном разделе вы можете оставить заявление на вступление в С ЦСН ФСБ РФ! 😊</h2>
+            
+            <h3>🤔 Основные требования к кандидату:</h3>
+            <ul>
+                <li>Состоять в УФСБ.</li>
+                <li>Иметь 3+ ранг в УФСБ.</li>
+                <li>Знать правила РП отыгровок.</li>
+                <li>Иметь открытый профиль ВКонтакте.</li>
+                <li>Иметь положительную законопослушность в области.</li>
+            </ul>
 
-        <!-- Изображение с анимацией -->
-        <div class="image-section">
-            <img src="main-image.png" alt="main visual" class="animated-image">
-        </div>
-        
-<!-- БЛОК НОВОСТЕЙ -->
-<div class="news-section">
-    <h2>📢 Последние новости</h2>
-    <div id="news-container">Загрузка...</div>
-</div>
-        <!-- Кнопка подачи рапорта (ведёт на твою ссылку) -->
-        <button class="report-btn" id="report-btn">Подать рапорт в ЦСН</button>
+            <h3>⭐ Форма подачи рапортов на вступление:</h3>
+            <ol>
+                <li>Ваш NickName:</li>
+                <li>Состоите ли вы в УФСБ:</li>
+                <li>Ваше звание:</li>
+                <li>Скриншот паспорта (с /time):</li>
+                <li>Ссылка на вашу страницу ВКонтакте:</li>
+                <li>Дата & подпись:</li>
+            </ol>
 
-        <!-- Твой текст (замени на свой) -->
-        <div class="my-text-block" id="target-text">
-                😊В данном разделе вы можете оставить заявление на вступление в С ЦСН ФСБ РФ!😊
+            <h3>❤️ Ответственные лица за проверку рапортов:</h3>
+            <ul>
+                <li>Верховный Главнокомандующий ЦСН - Полковник УФСБ - Aleksandr_Suvorov.</li>
+                <li>Начальник ЦСН - Майор УФСБ - Arturik_Batcovich.</li>
+                <li>Главный Заместитель ЦСН - Майор УФСБ - Roman_Mishin.</li>
+            </ul>
 
+            <h3>📛 Примечания:</h3>
+            <ul>
+                <li>Любой рапорт, составленный не по форме, будет иметь вердикт "ОТКАЗАНО".</li>
+                <li>Рапорты, скриншоты которого противоречат правилам: созданы более трёх дней назад/доступны к просмотру только в социальных сетях/недоступны к просмотру/отображают не то, что требуется/не содержит команды time - будут иметь вердикт "ОТКАЗАНО".</li>
+                <li>Рапорты, в содержании которых допущено большое количество грамматических ошибок, будут иметь вердикт "ОТКАЗАНО".</li>
+                <li>Рапорты, в которых отсутствует/закрыт профиль ВКонтакте будут иметь вердикт "ОТКАЗАНО".</li>
+                <li>Рапорты, в которых NickName не совпадает с ФИО, прописанным в паспорте, будет иметь вердикт "ОТКАЗАНО".</li>
+                <li>Рапорты от лиц, не состоящих в организации УФСБ/имеющих недопустимый ранг (1-2), будут иметь вердикт: "ОТКАЗАНО".</li>
+                <li>Рапорты от лиц, находящихся в Чёрном Списке подразделения будут иметь вердикт "ОТКАЗАНО".</li>
+            </ul>
 
-🤔Основные требования к кандидату:🤔
-• Состоять в УФСБ.
-• Иметь 3+ ранг в УФСБ.
-• Знать правила РП отыгровок.
-• Иметь открытый профиль ВКонтакте.
-• Иметь положительную законопослушность в области.​
-⭐Форма подачи рапортов на вступление:⭐
-1. Ваш NickName:
-2. Состоите ли вы в УФСБ:
-3. Ваше звание:
-4. Скриншот паспорта (с /time):
-5. Ссылка на вашу страницу ВКонтакте:
-6. Дата & подпись:​
-❤️Ответственные лица за проверку рапортов:❤️
-• Верховный Главнокомандующий ЦСН - Полковник УФСБ - Aleksandr_Suvorov.
-• Начальник ЦСН - Майор УФСБ - Arturik_Batcovich.
-• Главный Заместитель ЦСН - Майор УФСБ - Roman_Mishin.​
-📛Примечания:📛
-• Любой рапорт, составленный не по форме, будет иметь вердикт "ОТКАЗАНО".
-• Рапорты, скриншоты которого противоречат правилам: созданы более трёх дней назад/доступны к просмотру только в социальных сетях/недоступны к просмотру/отображают не то, что требуется/не содержит команды time - будут иметь вердикт "ОТКАЗАНО".
-• Рапорты, в содержании которых допущено большое количество грамматических ошибок, будут иметь вердикт "ОТКАЗАНО".
-• Рапорты, в которых отсутствует/закрыт профиль ВКонтакте будут иметь вердикт "ОТКАЗАНО".
-• Рапорты, в которых NickName не совпадает с ФИО, прописанным в паспорте, будет иметь вердикт "ОТКАЗАНО".
-• Рапорты от лиц, не состоящих в организации УФСБ/имеющих недопустимый ранг (1-2), будут иметь вердикт: "ОТКАЗАНО".
-• Рапорты от лиц, находящихся в Чёрном Списке подразделения будут иметь вердикт "ОТКАЗАНО".​
-🔥Руководство С ЦСН ФСБ РФ с нетерпеньем ждёт именно вас в своих рядах!🔥
-🔥Успейте оставить рапорт и погрузиться в настоящую атмосферу УФСБ РФ!🔥
+            <p style="font-weight: bold; color: #512da8;">🔥 Руководство С ЦСН ФСБ РФ с нетерпеньем ждёт именно вас в своих рядах! 🔥</p>
+            <p style="font-weight: bold; color: #512da8;">🔥 Успейте оставить рапорт и погрузиться в настоящую атмосферу УФСБ РФ! 🔥</p>
+        </section>
+
+        <!-- Кнопка для перехода на сайт регистрации (если хочешь дать ссылку) -->
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="https://csn-logon.github.io/" class="login-btn">Войти / Зарегистрироваться</a>
         </div>
     </div>
 
-    <script src="profile.js"></script>
-    <script src="news.js"></script>
-    <div id="news-container">Загрузка новостей...</div>
-
-<script>
-async function loadNews() {
-    try {
-        // Путь к файлу на GitHub (сырой)
-        const response = await fetch('https://raw.githubusercontent.com/Fuporitov/csn.github.io/main/news.json');
-        const news = await response.json();
-        
-        const container = document.getElementById('news-container');
-        if (news.length === 0) {
-            container.innerHTML = '<p>Пока нет новостей</p>';
-        } else {
-            container.innerHTML = news.map(item => `
-                <div style="border-bottom:1px solid #ccc; padding:10px;">
-                    <h3>${item.title}</h3>
-                    <p>${item.content}</p>
-                    <small>${item.date}</small>
-                </div>
-            `).join('');
-        }
-    } catch (e) {
-        document.getElementById('news-container').innerHTML = '<p>Ошибка загрузки новостей</p>';
-    }
-}
-loadNews();
-</script>
-
-<div id="news-container">Загрузка новостей...</div>
-<script>
-  fetch('https://raw.githubusercontent.com/Fuporitov/csn.github.io/main/news.json')
-    .then(r => r.json())
-    .then(news => {
-      const container = document.getElementById('news-container');
-      if (news.length === 0) {
-        container.innerHTML = '<p>Новостей пока нет</p>';
-      } else {
-        container.innerHTML = news.map(item => `
-          <div style="border-bottom:1px solid #ccc; padding:10px;">
-            <h3>${item.title}</h3>
-            <p>${item.content}</p>
-            <small>${item.date}</small>
-          </div>
-        `).join('');
-      }
-    })
-    .catch(() => {
-      document.getElementById('news-container').innerHTML = '<p>Ошибка загрузки новостей</p>';
-    });
-</script>
-    
+    <!-- Скрипт для загрузки новостей -->
+    <script>
+        // Замени 'Fuporitov' на свой логин, если нужно
+        fetch('https://raw.githubusercontent.com/Fuporitov/csn.github.io/main/news.json')
+            .then(response => {
+                if (!response.ok) throw new Error('Сеть ответила с ошибкой');
+                return response.json();
+            })
+            .then(news => {
+                const container = document.getElementById('news-container');
+                if (!news || news.length === 0) {
+                    container.innerHTML = '<p>Пока нет новостей</p>';
+                } else {
+                    // Показываем последние 5 новостей (сначала новые)
+                    const latestNews = news.slice(-5).reverse();
+                    container.innerHTML = latestNews.map(item => `
+                        <div class="news-item">
+                            <h3>${item.title}</h3>
+                            <p>${item.content}</p>
+                            <small>${item.date}</small>
+                        </div>
+                    `).join('');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка загрузки новостей:', error);
+                document.getElementById('news-container').innerHTML = '<p>Не удалось загрузить новости. Попробуйте позже.</p>';
+            });
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
