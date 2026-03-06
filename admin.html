@@ -2,26 +2,123 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Управление новостями</title>
+    <title>Добавление новости</title>
+    <style>
+        body {
+            background: #f5f5f5;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .admin-box {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 { color: #512da8; margin-bottom: 20px; }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        button {
+            background: #512da8;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover { background: #3f1f8a; }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
-    <div class="admin-container" style="max-width: 800px; margin: 50px auto; padding: 20px;">
-        <h1>Управление новостями</h1>
-        
-        <div id="admin-news-list"></div>
-        
-        <h2>➕ Добавить новость</h2>
-        <form id="news-form">
-            <input type="text" id="news-title" placeholder="Заголовок" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
-            <textarea id="news-content" placeholder="Текст новости" rows="4" required style="width: 100%; padding: 10px; margin-bottom: 10px;"></textarea>
-            <button type="submit" style="background: #512da8; color: white; padding: 10px 20px; border: none; border-radius: 5px;">Опубликовать</button>
-        </form>
-        
-        <button id="logout-btn" style="margin-top: 20px; background: #f44336; color: white; padding: 8px 16px; border: none; border-radius: 5px;">Выйти</button>
+    <div class="admin-box">
+        <h1>➕ Добавить новость</h1>
+        <div class="warning">
+            ⚠️ Вставь свой GitHub токен в код этой страницы (переменная GH_TOKEN).
+        </div>
+        <input type="text" id="title" placeholder="Заголовок">
+        <textarea id="content" placeholder="Текст новости" rows="5"></textarea>
+        <button id="publish">Опубликовать</button>
+        <div id="result" style="margin-top:20px;"></div>
     </div>
-    
-    <script src="admin.js"></script>
+
+    <script>
+        // ⚡ ТВОЙ ТОКЕН (получи на GitHub)
+        const GH_TOKEN = 'ghp_...';  // ВСТАВЬ СЮДА СВОЙ ТОКЕН
+        const REPO = 'ТВОЙ_ЛОГИН/ТВОЙ_РЕПОЗИТОРИЙ';  // например 'Fuporitov/csn.github.io'
+        const FILE_PATH = 'news.json';
+
+        document.getElementById('publish').addEventListener('click', async () => {
+            const title = document.getElementById('title').value.trim();
+            const content = document.getElementById('content').value.trim();
+            if (!title || !content) {
+                return alert('Заполни поля');
+            }
+
+            // Получить текущий файл
+            let sha;
+            let existingNews = [];
+            try {
+                const getResp = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`, {
+                    headers: { 'Authorization': `token ${GH_TOKEN}` }
+                });
+                const fileData = await getResp.json();
+                sha = fileData.sha;
+                const contentDecoded = atob(fileData.content);
+                existingNews = JSON.parse(contentDecoded);
+            } catch (e) {
+                console.error(e);
+                return document.getElementById('result').innerHTML = '❌ Ошибка загрузки файла';
+            }
+
+            // Добавить новость
+            const date = new Date().toLocaleString();
+            existingNews.push({ title, content, date });
+            const updatedContent = btoa(JSON.stringify(existingNews, null, 2));
+
+            // Отправить обновление
+            const putResp = await fetch(`https://api.github.com/repos/${REPO}/contents/${FILE_PATH}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${GH_TOKEN}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Добавлена новость',
+                    content: updatedContent,
+                    sha: sha
+                })
+            });
+
+            if (putResp.ok) {
+                document.getElementById('result').innerHTML = '✅ Новость опубликована!';
+                document.getElementById('title').value = '';
+                document.getElementById('content').value = '';
+            } else {
+                document.getElementById('result').innerHTML = '❌ Ошибка публикации';
+            }
+        });
+    </script>
 </body>
 </html>
