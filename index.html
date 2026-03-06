@@ -9,45 +9,140 @@
     <!-- Основные стили – можешь использовать тот же style.css, что и на сайте регистрации, или свой -->
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Дополнительные стили для новостей, если не описаны в style.css */
-        .news-section {
-            background: #f9f9f9;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 30px auto;
-            max-width: 800px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .news-item {
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
-        }
-        .news-item:last-child {
-            border-bottom: none;
-        }
-        .news-item h3 {
-            color: #512da8;
-            margin-bottom: 5px;
-        }
-        .news-item small {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        /* Кнопка для перехода на сайт регистрации (если хочешь) */
-        .login-btn {
-            display: inline-block;
-            background-color: #512da8;
-            color: white;
-            padding: 10px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            margin-top: 20px;
-            font-weight: 500;
-            transition: background 0.3s;
-        }
-        .login-btn:hover {
-            background-color: #3f1f8a;
-        }
+        /* Синяя тема в стиле регистрации */
+:root {
+    --primary: #512da8;
+    --primary-light: #5c6bc0;
+    --primary-dark: #3f1f8a;
+    --bg-gradient: linear-gradient(to right, #5c6bc0, #512da8);
+}
+
+body {
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Шапка */
+header h1 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Блок новостей */
+.news-section {
+    background: white;
+    border-radius: 30px;
+    padding: 25px;
+    margin: 30px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+
+.news-section h2 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.news-item {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.news-item:last-child {
+    border-bottom: none;
+}
+
+.news-item h3 {
+    color: var(--primary-dark);
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.news-item small {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* Основной блок с информацией */
+.info-block {
+    background: white;
+    border-radius: 30px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    margin: 30px 0;
+}
+
+.info-block h2, .info-block h3 {
+    color: var(--primary);
+}
+
+.info-block ul, .info-block ol {
+    padding-left: 20px;
+    line-height: 1.6;
+}
+
+.info-block li {
+    margin: 8px 0;
+}
+
+/* Кнопка для перехода на регистрацию */
+.login-btn {
+    display: inline-block;
+    background-color: var(--primary);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(81, 45, 168, 0.3);
+}
+
+.login-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(81, 45, 168, 0.4);
+}
+
+/* Анимация для фото (если будет добавлено) */
+.animated-image {
+    max-width: 100%;
+    border-radius: 30px;
+    box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideUpFade 1s ease-out forwards;
+}
+
+@keyframes slideUpFade {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Если захочешь добавить изображение, используй этот класс */
+.image-section {
+    text-align: center;
+    margin: 30px 0;
+}
     </style>
 </head>
 <body>
@@ -57,6 +152,10 @@
             <h1 style="color: #512da8;">ЦСН ФСБ #62 IVANOVO</h1>
             <p style="font-size: 1.2rem;">Официальный сайт подразделения</p>
         </header>
+
+        <div class="image-section">
+    <img src="main-image.png" alt="ЦСН ФСБ" class="animated-image">
+</div>
 
         <!-- БЛОК НОВОСТЕЙ (загружается из news.json) -->
         <section class="news-section">
@@ -146,3 +245,4 @@
     </script>
 </body>
 </html>
+
